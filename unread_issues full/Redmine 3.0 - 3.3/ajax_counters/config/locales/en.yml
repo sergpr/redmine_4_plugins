@@ -1,0 +1,6 @@
+# English strings go here for Rails i18n
+en:
+  ajax_counters: "Ajax Counters"
+  label_refresh_ajax_counters: "Refresh counters"
+
+  label_cm_menu_custom_menu_ac_update_counters: 'Refresh counters'

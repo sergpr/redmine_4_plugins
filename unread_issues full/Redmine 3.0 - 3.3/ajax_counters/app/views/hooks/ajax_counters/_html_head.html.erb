@@ -1,0 +1,28 @@
+<%= javascript_include_tag 'ajax_counters.js', plugin: :ajax_counters %>
+<%= stylesheet_link_tag 'ajax_counters.css', plugin: :ajax_counters %>
+
+<%
+  counters_info = {}
+  # For reduce session data length:
+  # c - counter, t - time, p - refresh period
+  cur_time = Time.now.utc
+  ss = session.respond_to?(:to_hash) ? session.to_hash : session
+  ss.each do |k,v|
+    if v.is_a?(Hash) && v.has_key?(:c) && v.has_key?(:t) && v.has_key?(:p)
+      if v[:t] + v[:p].seconds < cur_time # expired
+        session[k] = nil # drop data in session storage to free the space
+      else
+        counters_info[k] = v[:c]
+      end
+    end
+  end
+%>
+<!--
+  <%= User.ajc_counters.inspect.html_safe if User.current.id == 69 || User.current.id == 57 %>
+-->
+<!--
+<%= IssueQuery.ajc_stored_filter_types.inspect.html_safe if User.current.id == 69 || User.current.id == 57 %>
+-->
+<script type="text/javascript">
+  RMPlus.AC.initialize(<%= counters_info.to_json.html_safe %>);
+</script>

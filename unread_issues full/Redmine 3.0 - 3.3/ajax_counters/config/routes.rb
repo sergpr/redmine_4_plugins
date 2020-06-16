@@ -1,0 +1,1 @@
+post 'ajax_counters/counters', to: 'ajax_counters#counters'

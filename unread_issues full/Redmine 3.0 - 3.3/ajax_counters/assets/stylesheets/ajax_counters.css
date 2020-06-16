@@ -1,0 +1,15 @@
+span.ac_counter:empty {
+  display: none;
+}
+
+#sidebar li {
+  padding-top: 2px;
+}
+
+span.count.ac_light {
+  background-color: #40A348;
+}
+
+#refresh_ajax_counters + div.loader.ac_preloader{
+  padding: 5px 25px;
+}
